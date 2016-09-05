@@ -25,6 +25,13 @@ namespace NetFundamentals.API.Controllers
             return Ok(repository.GetById(x => x.CustomerId == id));
         }
 
+        [HttpGet]
+        [Route("customer/")]
+        public IHttpActionResult Customers()
+        {
+            return Ok(repository.GetList());
+        }
+
         [HttpPut]
         public IHttpActionResult Create(Customer customer)
         {
@@ -42,7 +49,7 @@ namespace NetFundamentals.API.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(Customer customer)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (customer.CustomerId == 0) return BadRequest(ModelState);
             return Ok(repository.Delete(customer));
         }
     }

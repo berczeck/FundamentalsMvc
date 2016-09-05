@@ -40,5 +40,9 @@ namespace NetFundamentals.Repository
             return context.Set<T>();
         }
 
+        public T GetById(T entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

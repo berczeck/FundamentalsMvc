@@ -15,7 +15,7 @@ namespace NetFundamentals.Web.Controllers
         private IRepository<Customer> repository;
         public CustomerController()
         {
-            repository = new BaseRepository<Customer>();
+            repository = new WebApiRepository();
         }
         // GET: Customer
         public ActionResult Index()
@@ -38,7 +38,7 @@ namespace NetFundamentals.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            var customer = repository.GetById(x => x.CustomerId == id);
+            var customer = repository.GetById(new Customer { CustomerId = id });
             if (customer == null) return RedirectToAction("Index");
             return View(customer);
         }
@@ -53,7 +53,7 @@ namespace NetFundamentals.Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            var customer = repository.GetById(x => x.CustomerId == id);
+            var customer = repository.GetById(new Customer { CustomerId = id });
             if (customer == null) return RedirectToAction("Index");
             return View(customer);
         }
@@ -67,7 +67,7 @@ namespace NetFundamentals.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var customer = repository.GetById(x => x.CustomerId == id);
+            var customer = repository.GetById(new Customer { CustomerId = id });
             if (customer == null) return RedirectToAction("Index");
             return View(customer);
         }

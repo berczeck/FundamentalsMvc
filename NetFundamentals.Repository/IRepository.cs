@@ -14,5 +14,6 @@ namespace NetFundamentals.Repository
         int Delete(T entity);
         IEnumerable<T> GetList();
         T GetById(Expression<Func<T, bool>> match);
+        T GetById(T entity);
     }
 }
